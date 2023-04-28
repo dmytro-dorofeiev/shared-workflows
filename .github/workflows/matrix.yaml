@@ -3,7 +3,7 @@ name: Test matrix from JSON
 on:
   workflow_call:
     inputs:
-      environment:
+      matrix:
         required: true
         description: Environment
         type: string
@@ -12,11 +12,11 @@ on:
 
 jobs:
   test:
-    name: "${{ matrix.environment }}"
+    name: test
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(inputs.environment) }}
+      matrix: ${{ fromJSON(inputs.matrix) }}
           
     steps:
       - name: "Debug"
