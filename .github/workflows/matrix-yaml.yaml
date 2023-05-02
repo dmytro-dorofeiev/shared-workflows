@@ -16,7 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix: ${{ inputs.matrix }}
+      matrix: 
+        include:
+          ${{ inputs.matrix }}
           
     steps:
       - name: "Debug"
