@@ -1,0 +1,27 @@
+name: Test matrix from JSON
+
+on:
+  workflow_call:
+    inputs:
+      matrix:
+        required: true
+        description: Environment
+        type: string
+        default: '[""]'
+      
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: 
+        include: ${{ inputs.matrix }}
+          
+    steps:
+      - name: "Debug"
+        run: |
+          echo "environment ${{ matrix.environment}}"
+          echo "AWS_OIDC_ROLE_NAME ${{ matrix.AWS_OIDC_ROLE_NAME}}"
+          echo "AWS_REGION ${{ matrix.AWS_REGION}}"
