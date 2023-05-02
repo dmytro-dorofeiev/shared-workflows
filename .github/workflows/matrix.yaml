@@ -16,8 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix: 
-        ${{ insert }}: ${{ fromJSON(inputs.matrix) }}
+      matrix: ${{ fromJSON(inputs.matrix) }}
           
     steps:
       - name: "Debug"
